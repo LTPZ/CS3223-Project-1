@@ -100,6 +100,8 @@ class SortedRun {
             System.err.println("SortedRun:Error reading " + filename);
             System.exit(1);
         }
+        if (tuples.size() == 0)
+            return null;
         return tuples;
     }
 
@@ -114,6 +116,18 @@ class SortedRun {
         File file = new File(filename);
         if (!file.delete()) {
             System.err.println("SortedRun: Cannot delete file " + filename);
+        }
+        return true;
+    }
+
+    public boolean resetInputStream() {
+        try {
+            in = new ObjectInputStream(new FileInputStream(filename));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.err.println("SortedRun: Error resetting input stream " + filename);
+            System.exit(1);
         }
         return true;
     }
