@@ -121,4 +121,15 @@ public class Tuple implements Serializable {
         }
         return 0;
     }
+
+    public static boolean allEqual(Tuple left, Tuple right) {
+        if (left.data().size() != right.data().size())
+            return false;
+        int indexesSize = left.data().size();
+        ArrayList<Integer> compareIndexes = new ArrayList<>();
+        for (int i = 0; i < indexesSize; ++i) {
+            compareIndexes.add(i);
+        }
+        return Tuple.compareTuples(left, right, compareIndexes, compareIndexes) == 0;
+    }
 }

@@ -11,6 +11,16 @@ New functions implemented in the code
    in one input buffer while "lpgcurs" is for traversing buffer pages.
    
 2. *External Sort*
+   
+   see src/qp/operators/Externalsort.java
+
+   This class provides a external sort operation with one table input and one batch of sorted tuples as output.
+
+   open() will construct a list of sorted runs and recursively merge them. In the end it will produce a single sorted run which contains the sorted table.
+
+   next() will output one batch of the sorted table
+
+   By passing different `asOrDes` variable, it can change the sort to be ascending or descending.
 
 3. *SortedRun*
    
@@ -24,7 +34,7 @@ New functions implemented in the code
    
    open() will generate an external sort operator from the base to sort the given base table.
    
-   next() will derive the distinct tuples from the external sort and output will be distinct tuples.
+   next() will derive the distinct tuples from the external sort and output will be a batch of distinct tuples.
 
 6. *Orderby*
    
