@@ -96,11 +96,8 @@ public class SortMergeJoin extends Join {
         eosl = false;
         eosr = false;
         hasRepeat = false;
-<<<<<<< HEAD
-=======
         repeatedTuples = new ArrayList<>();
         tuplesToOutput = new ArrayList<>();
->>>>>>> b67a16fa2e763f42ec37eddeb643d30e31d6eae8
 
         for (int i = 0; i < leftbatches.size(); ++i) {
             Batch curr = leftES.next();
@@ -166,11 +163,7 @@ public class SortMergeJoin extends Join {
                 Tuple lefttuple = leftbatches.get(lpgcurs).get(lcurs);
                 Tuple righttuple = rightbatches.get(rpgcurs).get(rcurs);
 
-<<<<<<< HEAD
-                if (hasRepeat && !Tuple.allEqual(leftBaseTuple, lefttuple)) {
-=======
                 if (hasRepeat && !allEqual(leftBaseTuple, lefttuple)) {
->>>>>>> b67a16fa2e763f42ec37eddeb643d30e31d6eae8
                     if (Tuple.compareTuples(lefttuple, tempTuple, leftindexes, rightindexes) == 0) {
                         for (Tuple t : repeatedTuples) {
                             tuplesToOutput.add(lefttuple.joinWith(t));
@@ -191,10 +184,7 @@ public class SortMergeJoin extends Join {
                     Tuple outTuple = lefttuple.joinWith(righttuple);
                     outbatch.add(outTuple);
                     if (!hasRepeat) {
-<<<<<<< HEAD
-=======
                         leftBaseTuple = lefttuple;
->>>>>>> b67a16fa2e763f42ec37eddeb643d30e31d6eae8
                         repeatedTuples = new ArrayList<>();
                         repeatedTuples.add(righttuple);
                         tempTuple = repeatedTuples.get(0);
@@ -234,8 +224,6 @@ public class SortMergeJoin extends Join {
         if (!rightES.close()) return false;
         return true;
     }
-<<<<<<< HEAD
-=======
 
     public  boolean allEqual(Tuple left, Tuple right) {
         if (left.data().size() != right.data().size())
@@ -247,5 +235,4 @@ public class SortMergeJoin extends Join {
         }
         return Tuple.compareTuples(left, right, compareIndexes, compareIndexes) == 0;
     }
->>>>>>> b67a16fa2e763f42ec37eddeb643d30e31d6eae8
 }
